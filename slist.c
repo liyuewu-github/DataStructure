@@ -1,19 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*£¬£¬£¬
-¾ØÕó×ªÈ¦£¬¶¯Ì¬¹æ»®£¬*/
-
 #define NULL ((void *)0)
 
-/* µ¥Á´±í */
+/* å•é“¾è¡¨ */
 typedef struct S_List
 {
 	unsigned int uiValue;
 	struct S_List *pstNext;
 }S_LIST_S;
 
-/* Á´±í²åÈë */
+/* é“¾è¡¨æ’å…¥ */
 S_LIST_S * SLIST_Insert(S_LIST_S *pstSList, unsigned int uiValue)
 {
 	S_LIST_S *pstSList_New;
@@ -26,7 +23,7 @@ S_LIST_S * SLIST_Insert(S_LIST_S *pstSList, unsigned int uiValue)
 	pstSList_New->uiValue = uiValue;
 	pstSList_New->pstNext = NULL;
 
-	if (!pstSList) /* Á´±íµÚÒ»¸ö½Úµã */
+	if (!pstSList) /* é“¾è¡¨ç¬¬ä¸€ä¸ªèŠ‚ç‚¹ */
 	{
 		pstSList = pstSList_New;
 		return pstSList;
@@ -43,7 +40,7 @@ S_LIST_S * SLIST_Insert(S_LIST_S *pstSList, unsigned int uiValue)
 	return pstSList;
 }
 
-/* ²éÕÒÁ´±í */
+/* æŸ¥æ‰¾é“¾è¡¨ */
 S_LIST_S * SLIST_Find(S_LIST_S *pstSList, unsigned int uiValue)
 {
 	while (pstSList)
@@ -56,7 +53,7 @@ S_LIST_S * SLIST_Find(S_LIST_S *pstSList, unsigned int uiValue)
 	return NULL;
 }
 
-/* Á´±í³¤¶È */
+/* é“¾è¡¨é•¿åº¦ */
 unsigned int SLIST_Len(S_LIST_S *pstSList)
 {
 	unsigned int uiLen = 0;
@@ -69,7 +66,7 @@ unsigned int SLIST_Len(S_LIST_S *pstSList)
 	return uiLen;
 }
 
-/* ´òÓ¡Á´±í */
+/* æ‰“å°é“¾è¡¨ */
 void SLIST_Dump(S_LIST_S *pstSList)
 {
 	while (pstSList)
@@ -80,7 +77,7 @@ void SLIST_Dump(S_LIST_S *pstSList)
 }
 
 
-/* Á´±í·´×ª-·Çµİ¹é */
+/* é“¾è¡¨åè½¬-éé€’å½’ */
 S_LIST_S *SLIST_Reverse_NoRecursive(S_LIST_S *pstSList)
 {
 	S_LIST_S *pstSList_Rev = NULL;
@@ -91,16 +88,16 @@ S_LIST_S *SLIST_Reverse_NoRecursive(S_LIST_S *pstSList)
 
 	while (pstSList_Cur)
 	{
-		pstSList_Next = pstSList_Cur->pstNext; /* ÏÈ¼ÇÂ¼µ±Ç°½ÚµãµÄÏÂÒ»¸ö½Úµã£¬ºóÃæ»á±»¸²¸Ç */
-		pstSList_Cur->pstNext = pstSList_Rev; /* µ±Ç°½ÚµãpstNextÖ¸ÏòÆäÇ°Ò»¸ö½Úµã£¬¼´·´×ª */
-		pstSList_Rev = pstSList_Cur; /* µ±Ç°½Úµã×÷ÎªÏÂÒ»ÂÖµÄÇ°Ò»¸ö½Úµã */
-		pstSList_Cur = pstSList_Next; /* µ±Ç°½ÚµãpstNext×÷ÎªÏÂÒ»ÂÖµÄµ±Ç°½Úµã£¬¼ÌĞø±éÀúÖ±ÖÁµ½Á´±íÎ² */
+		pstSList_Next = pstSList_Cur->pstNext; /* å…ˆè®°å½•å½“å‰èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼Œåé¢ä¼šè¢«è¦†ç›– */
+		pstSList_Cur->pstNext = pstSList_Rev; /* å½“å‰èŠ‚ç‚¹pstNextæŒ‡å‘å…¶å‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå³åè½¬ */
+		pstSList_Rev = pstSList_Cur; /* å½“å‰èŠ‚ç‚¹ä½œä¸ºä¸‹ä¸€è½®çš„å‰ä¸€ä¸ªèŠ‚ç‚¹ */
+		pstSList_Cur = pstSList_Next; /* å½“å‰èŠ‚ç‚¹pstNextä½œä¸ºä¸‹ä¸€è½®çš„å½“å‰èŠ‚ç‚¹ï¼Œç»§ç»­éå†ç›´è‡³åˆ°é“¾è¡¨å°¾ */
 	}
 
 	return pstSList_Rev;
 }
 
-/* Á´±í·´×ª-µİ¹é */
+/* é“¾è¡¨åè½¬-é€’å½’ */
 S_LIST_S *SLIST_Reverse_Recursive(S_LIST_S *pstSList)
 {	
 	if (!pstSList)
@@ -109,17 +106,17 @@ S_LIST_S *SLIST_Reverse_Recursive(S_LIST_S *pstSList)
 	printf("value %d \n", pstSList->uiValue);
 }
 
-/* Á´±íÓĞÃ»ÓĞ»· */
+/* é“¾è¡¨æœ‰æ²¡æœ‰ç¯ */
 int SLIST_IsRing(S_LIST_S *pstSList, S_LIST_S **ppstSList_Ring)
 {
 	S_LIST_S *pstSList_Fast = pstSList;
 	S_LIST_S *pstSList_Slow = pstSList;
 	*ppstSList_Ring = NULL;
 
-	if ((!pstSList) || (!pstSList->pstNext)) /* ¿ÕÁ´±íºÍÖ»ÓĞÒ»¸öÔªËØµÄÁ´±í²»»áÓĞ»· */
+	if ((!pstSList) || (!pstSList->pstNext)) /* ç©ºé“¾è¡¨å’Œåªæœ‰ä¸€ä¸ªå…ƒç´ çš„é“¾è¡¨ä¸ä¼šæœ‰ç¯ */
 		return 0;
 
-	while (pstSList_Slow && pstSList_Fast->pstNext) /* ÄÜ×ßµ½Î²½áµãËµÃ÷Ã»»· */
+	while (pstSList_Slow && pstSList_Fast->pstNext) /* èƒ½èµ°åˆ°å°¾ç»“ç‚¹è¯´æ˜æ²¡ç¯ */
 	{
 		pstSList_Fast = pstSList_Fast->pstNext->pstNext;
 		pstSList_Slow = pstSList_Slow->pstNext;
@@ -132,7 +129,7 @@ int SLIST_IsRing(S_LIST_S *pstSList, S_LIST_S **ppstSList_Ring)
 	return 0;
 }
 
-/* Á´±íÊÇ·ñÏà½» */
+/* é“¾è¡¨æ˜¯å¦ç›¸äº¤ */
 int SLIST_IsCross(S_LIST_S *pstSListA, S_LIST_S *pstSListB)
 {
 	if ((!pstSListA) || (!pstSListB))
@@ -144,13 +141,13 @@ int SLIST_IsCross(S_LIST_S *pstSListA, S_LIST_S *pstSListB)
 	while(pstSListB->pstNext)
 		pstSListB = pstSListB->pstNext;
 
-	if (pstSListA == pstSListB) /* Èç¹ûÁ½¸öµ¥Á´±íÏà½»£¬ÔòÎ²½ÚµãÊÇÒ»ÑùµÄ */
+	if (pstSListA == pstSListB) /* å¦‚æœä¸¤ä¸ªå•é“¾è¡¨ç›¸äº¤ï¼Œåˆ™å°¾èŠ‚ç‚¹æ˜¯ä¸€æ ·çš„ */
 		return 1;
 
 	return 0;
 }
 
-/* ÕÒµ½Á´±íµ¹ÊıµÚK¸ö½Úµã */
+/* æ‰¾åˆ°é“¾è¡¨å€’æ•°ç¬¬Kä¸ªèŠ‚ç‚¹ */
 S_LIST_S *SLIST_Find_K(S_LIST_S *pstSList, unsigned int uiK)
 {
 	S_LIST_S *pstFast = pstSList;
@@ -170,7 +167,7 @@ S_LIST_S *SLIST_Find_K(S_LIST_S *pstSList, unsigned int uiK)
 	return pstSlow;
 }
 
-/* Á´±íÉ¾³ıÖØ¸´ÔªËØ */
+/* é“¾è¡¨åˆ é™¤é‡å¤å…ƒç´  */
 S_LIST_S * SLIST_Delete_Repect(S_LIST_S *pstSList)
 {
 	unsigned char aucList[1000] = {0};
